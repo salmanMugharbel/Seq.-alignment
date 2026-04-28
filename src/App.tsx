@@ -1,0 +1,38 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Theory from './pages/Theory';
+import NeedlemanWunsch from './pages/NeedlemanWunsch';
+import SmithWaterman from './pages/SmithWaterman';
+import Blast from './pages/Blast';
+import SubstitutionMatrices from './pages/SubstitutionMatrices';
+import TestCases from './pages/TestCases';
+import Analysis from './pages/Analysis';
+import Source from './pages/Source';
+import Conclusion from './pages/Conclusion';
+import References from './pages/References';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <Routes>
+          <Route path="/"                      element={<Home />} />
+          <Route path="/theory"                element={<Theory />} />
+          <Route path="/needleman-wunsch"      element={<NeedlemanWunsch />} />
+          <Route path="/smith-waterman"        element={<SmithWaterman />} />
+          <Route path="/blast"                 element={<Blast />} />
+          <Route path="/substitution-matrices" element={<SubstitutionMatrices />} />
+          <Route path="/test-cases"            element={<TestCases />} />
+          <Route path="/analysis"              element={<Analysis />} />
+          <Route path="/source"                element={<Source />} />
+          <Route path="/conclusion"            element={<Conclusion />} />
+          <Route path="/references"            element={<References />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
+}
