@@ -16,9 +16,11 @@ import References from './pages/References';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen bg-white">
         <Sidebar />
-        <div className="flex flex-col flex-1 md:ml-64">
+        {/* Desktop spacer for fixed sidebar */}
+        <div className="hidden md:block w-64 flex-shrink-0 bg-[#1e3a5f]" />
+        <div className="flex flex-col flex-1 pt-16 md:pt-0">
           <main className="flex-1">
             <Routes>
               <Route path="/"                      element={<Home />} />

@@ -72,9 +72,6 @@ export const Sidebar: React.FC = () => {
           onClick={() => setIsOpen(false)}
         />
       )}
-
-      {/* Spacer on desktop */}
-      <div className="hidden md:block w-64" />
     </>
   );
 };
