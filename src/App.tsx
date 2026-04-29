@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { Sidebar } from './components/Sidebar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Theory from './pages/Theory';
@@ -16,22 +16,26 @@ import References from './pages/References';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <Routes>
-          <Route path="/"                      element={<Home />} />
-          <Route path="/theory"                element={<Theory />} />
-          <Route path="/needleman-wunsch"      element={<NeedlemanWunsch />} />
-          <Route path="/smith-waterman"        element={<SmithWaterman />} />
-          <Route path="/blast"                 element={<Blast />} />
-          <Route path="/substitution-matrices" element={<SubstitutionMatrices />} />
-          <Route path="/test-cases"            element={<TestCases />} />
-          <Route path="/analysis"              element={<Analysis />} />
-          <Route path="/source"                element={<Source />} />
-          <Route path="/conclusion"            element={<Conclusion />} />
-          <Route path="/references"            element={<References />} />
-        </Routes>
-        <Footer />
+      <div className="flex min-h-screen">
+        <Sidebar />
+        <div className="flex flex-col flex-1 md:ml-64">
+          <main className="flex-1">
+            <Routes>
+              <Route path="/"                      element={<Home />} />
+              <Route path="/theory"                element={<Theory />} />
+              <Route path="/needleman-wunsch"      element={<NeedlemanWunsch />} />
+              <Route path="/smith-waterman"        element={<SmithWaterman />} />
+              <Route path="/blast"                 element={<Blast />} />
+              <Route path="/substitution-matrices" element={<SubstitutionMatrices />} />
+              <Route path="/test-cases"            element={<TestCases />} />
+              <Route path="/analysis"              element={<Analysis />} />
+              <Route path="/source"                element={<Source />} />
+              <Route path="/conclusion"            element={<Conclusion />} />
+              <Route path="/references"            element={<References />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
   );

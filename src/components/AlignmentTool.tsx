@@ -4,7 +4,9 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import MatrixView from './MatrixView';
 import AlignmentDisplay from './AlignmentDisplay';
+import { SequenceSelector } from './SequenceSelector';
 import type { AlignmentParams, AlignmentResult } from '../lib/alignment/types';
+import type { RealSequence } from '../data/realSequences';
 import { BLOSUM62 } from '../lib/matrices/blosum62';
 
 type AlgoFn = (params: AlignmentParams) => AlignmentResult;
@@ -85,8 +87,30 @@ export default function AlignmentTool({
 
   useEffect(() => () => { if (animRef.current) clearInterval(animRef.current); }, []);
 
+  const handleSequenceSelect = useCallback((sequence: RealSequence, position: 'A' | 'B' = 'A') => {
+    if (position === 'A') {
+      setSeqA(sequence.sequence);
+      setSeqType(sequence.type === 'protein' ? 'protein' : 'dna');
+    } else {
+      setSeqB(sequence.sequence);
+      setSeqType(sequence.type === 'protein' ? 'protein' : 'dna');
+    }
+  }, []);
+
   return (
     <div className="space-y-6 max-w-5xl">
+      {/* Sequence Selector */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <p className="text-xs text-gray-500 mb-1">Load into Sequence A:</p>
+          <SequenceSelector onSequenceSelect={(seq) => handleSequenceSelect(seq, 'A')} />
+        </div>
+        <div>
+          <p className="text-xs text-gray-500 mb-1">Load into Sequence B:</p>
+          <SequenceSelector onSequenceSelect={(seq) => handleSequenceSelect(seq, 'B')} />
+        </div>
+      </div>
+
       {/* Inputs */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
