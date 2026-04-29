@@ -24,8 +24,8 @@ export default function SmithWatermanPage() {
             how global and local alignment differ on sequences with divergent ends.
           </p>
         </div>
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 inline-block">
-          <BlockMath math={String.raw`H(i,j) = \max \begin{cases} 0 \\ H(i-1,j-1) + s(a_i,b_j) \\ H(i-1,j) + g \\ H(i,j-1) + g \end{cases}`} />
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 overflow-x-auto my-6">
+          <BlockMath math={String.raw`H(i,j) = \max \begin{cases} 0 & \text{(reset to zero)} \\ H(i-1,j-1) + s(a_i,b_j) & \text{diagonal (match/mismatch)} \\ H(i-1,j) + g & \text{up (gap in sequence B)} \\ H(i,j-1) + g & \text{left (gap in sequence A)} \end{cases}`} />
         </div>
         <AlignmentTool
           algo={smithWaterman}

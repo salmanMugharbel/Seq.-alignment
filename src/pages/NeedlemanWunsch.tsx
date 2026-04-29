@@ -20,8 +20,8 @@ export default function NeedlemanWunschPage() {
             the direction of the predecessor cell.
           </p>
         </div>
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 inline-block">
-          <BlockMath math={String.raw`F(i,j) = \max \begin{cases} F(i-1,j-1) + s(a_i,b_j) & \text{(match/mismatch)} \\ F(i-1,j) + g & \text{(gap in B)} \\ F(i,j-1) + g & \text{(gap in A)} \end{cases}`} />
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 overflow-x-auto my-6">
+          <BlockMath math={String.raw`F(i,j) = \max \begin{cases} F(i-1,j-1) + s(a_i,b_j) & \text{diagonal (match/mismatch)} \\ F(i-1,j) + g & \text{up (gap in sequence B)} \\ F(i,j-1) + g & \text{left (gap in sequence A)} \end{cases}`} />
         </div>
         <AlignmentTool
           algo={needlemanWunsch}

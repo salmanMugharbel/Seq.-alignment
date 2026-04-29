@@ -10,7 +10,7 @@ import type { AlignmentParams } from '../lib/alignment/types';
 
 const BASE_PARAMS: Omit<AlignmentParams, 'gap'> = {
   seqA: 'ACGTACGTAGCTTACGATCG',
-  seqB: 'ACGAACGTTGCTTACGTTCG',
+  seqB: 'ACGAATTTGCTTACGTTCG',
   sequenceType: 'dna',
   matchScore: 1,
   mismatchScore: -1,
@@ -99,9 +99,11 @@ export default function Analysis() {
           </h2>
           <p className="text-sm text-gray-600 mb-4 leading-relaxed">
             Alignment score of <code className="bg-gray-100 px-1 rounded text-xs">ACGTACGTAGCTTACGATCG</code> vs{' '}
-            <code className="bg-gray-100 px-1 rounded text-xs">ACGAACGTTGCTTACGTTCG</code> as the linear
-            gap penalty varies from &minus;1 to &minus;20. Global alignment (Needleman-Wunsch) scores drop
-            faster because it cannot ignore terminal gaps. Local alignment (Smith-Waterman) is more robust.
+            <code className="bg-gray-100 px-1 rounded text-xs">ACGAATTTGCTTACGTTCG</code> as the linear
+            gap penalty varies from &minus;1 to &minus;20. The second sequence has an inserted region (TTT)
+            that requires gaps to align. Global alignment (Needleman-Wunsch) scores drop faster because
+            it must align the entire length. Local alignment (Smith-Waterman) is more robust and can
+            focus on the best sub-alignment even as gaps become expensive.
           </p>
           <ResponsiveContainer width="100%" height={280}>
             <LineChart data={gapSweepData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
